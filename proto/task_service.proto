@@ -1,0 +1,16 @@
+syntax = "proto3";
+
+package task;
+
+import "google/protobuf/empty.proto";
+
+message Task {
+    string description = 1;
+    bool completed = 2;
+}
+
+service TaskService {
+    rpc CreateTask(Task) returns (Task);
+    rpc GetAllTask(google.protobuf.Empty) returns (stream Task);
+    rpc MarkTaskAsCompleted(Task) returns (Task);
+}
